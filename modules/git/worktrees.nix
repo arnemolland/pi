@@ -1,5 +1,5 @@
 { lib, ... }: {
-  flake.modules.homeManager.base.programs.zsh.initExtra = lib.mkMerge [
+  flake.modules.homeManager.base.programs.zsh.initContent = lib.mkMerge [
     # cd from worktree into clone
     ''
       git-cd () {

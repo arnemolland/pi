@@ -7,19 +7,6 @@
         timeout = 4;
         efi.canTouchEfiVariables = true;
         systemd-boot.enable = true;
-        grub = {
-          enable = true;
-          efiSupport = true;
-          mirroredBoots =
-            config.storage.redundancy.range
-            |> map (i: [
-              {
-                devices = [ "nodev" ];
-                path = "/boot${i}";
-              }
-            ])
-            |> lib.mkMerge;
-        };
       };
       fileSystems =
         config.storage.redundancy.range

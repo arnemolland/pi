@@ -3,13 +3,11 @@
     abort-on-warn = true;
     extra-experimental-features = [ "pipe-operators" ];
     allow-import-from-derivation = false;
-    allowUnfree = true;
   };
 
   inputs = {
     nixpkgs = {
       url = "github:nixos/nixpkgs/nixos-unstable";
-      inputs.nixpkgs-fmt.follows = "nixpkgs";
     };
 
     home-manager = {
@@ -17,9 +15,34 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    make-shell = {
+      url = "github:nicknovitski/make-shell";
+      inputs.flake-compat.follows = "flake-compat";
+    };
+
+    nix-index-database = {
+      url = "github:nix-community/nix-index-database";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    flake-compat = {
+      url = "https://flakehub.com/f/edolstra/flake-compat/1.tar.gz";
+    };
+
+    flake-parts = {
+      url = "github:hercules-ci/flake-parts";
+      inputs.nixpkgs-lib.follows = "nixpkgs";
+    };
+
     hyprland = { url = "github:hyprwm/Hyprland"; };
 
-    zen-browser = { url = "github:0xc000022070/zen-browser-flake"; };
+    zen-browser = {
+      url = "github:0xc000022070/zen-browser-flake";
+      inputs = {
+        home-manager.follows = "home-manager";
+        nixpkgs.follows = "nixpkgs";
+      };
+    };
 
     nixos-facter-modules = { url = "github:numtide/nixos-facter-modules"; };
 
@@ -81,7 +104,6 @@
       flake = false;
       url = "github:MichaelAquilina/zsh-auto-notify";
     };
-
   };
 
   outputs = 
@@ -90,7 +112,7 @@
       lib = inputs.nixpkgs.lib;
       modulesPath = ./modules;
     in
-    inputs.flake.parts.lib.mkFlake
+    inputs.flake-parts.lib.mkFlake
     {
       inherit inputs;
       specialArgs = {
@@ -112,7 +134,6 @@
 
         systems = [
           "x86_64-linux"
-          "aarch64-linux"
         ];
     };
 }

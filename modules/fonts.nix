@@ -79,7 +79,6 @@
               {
                 family = "monospace";
                 prefer = [
-                  "Berkeley Mono Variable"
                   "OpenDyslexicM Nerd Font"
                   "Noto Color Emoji"
                 ];
@@ -103,7 +102,6 @@
               text = fontsConf { inherit (config.fonts) aliases; };
             };
             packages = with pkgs; [
-              (callPackage ../../pkgs/fonts/berkeley-mono { })
               open-dyslexic
               nerd-fonts.open-dyslexic
               font-awesome
