@@ -28,6 +28,10 @@ in {
         nix.package = mkNix pkgs;
       };
 
-    homeManager.base = { ... }: { };
+    homeManager.base =
+      { pkgs, ... }:
+      {
+        nix.package = pkgs |> mkNix |> lib.mkDefault;
+      };
   };
 }
