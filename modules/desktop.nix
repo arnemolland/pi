@@ -1,24 +1,12 @@
 {
-  # Define the desktop module for the flake structure
   flake.modules.nixos.desktop = { pkgs, ... }: {
-    services = {
-      xserver = {
-        enable = true;
-        xkb = {
-          layout = "no";
-          variant = "";
-        };
+    # Common X server configuration
+    services.xserver = {
+      enable = true;
+      xkb = {
+        layout = "no";
+        variant = "";
       };
-      
-      displayManager = {
-        sddm.enable = true;
-        autoLogin = {
-          enable = true;
-          user = "arne";
-        };
-      };
-      
-      desktopManager.plasma6.enable = true;
     };
     
     # Wayland Support
