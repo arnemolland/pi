@@ -6,6 +6,7 @@
     
     # Force import root pool (important for ZFS root)
     boot.zfs.forceImportRoot = true;
+    boot.zfs.forceImportAll = true;
     
     # ZFS maintenance settings
     services.zfs.autoScrub.enable = true; 
