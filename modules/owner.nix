@@ -3,7 +3,7 @@
     meta.owner = {
       email = "arne@molland.sh";
       name = "Arne Molland";
-      username = "arnemolland";
+      username = "arne";
     };
 
     modules = {
