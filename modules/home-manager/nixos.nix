@@ -14,6 +14,7 @@
         })
         config.flake.modules.homeManager.base
         config.flake.modules.homeManager.gui
+        config.flake.modules.homeManager.personal  # Add personal module to imports
       ];
     };
   };

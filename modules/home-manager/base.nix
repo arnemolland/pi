@@ -4,7 +4,7 @@
       username = config.flake.meta.owner.username;
       homeDirectory = "/home/${config.flake.meta.owner.username}";
     };
-    programs.home-manager.enable = true;
+    programs.home-manager.enable = false;
     systemd.user.startServices = "sd-switch";
   };
 }

@@ -8,7 +8,7 @@
       displayManager = {
         sddm.enable = true;
         autoLogin = {
-          enable = true;
+          enable = false;
           user = "${config.flake.meta.owner.username}";
         };
       };

@@ -12,10 +12,10 @@
 
         users.users.${config.flake.meta.owner.username} = {
           isNormalUser = true;
-          initialPassword = "temp";  # Changed from "temp"
+          initialPassword = "temppassword";  # Changed from "temp" for better security
           extraGroups = [ "wheel" "input" "kvm" ];
-          home = "/home/arne";       # Explicitly set home directory
-          createHome = true;         # Ensure home is created
+          home = "/home/${config.flake.meta.owner.username}";  # Dynamic home path
+          createHome = true;  # Ensure home is created
         };
 
         nix.settings.trusted-users = [ config.flake.meta.owner.username ];
