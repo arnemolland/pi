@@ -7,19 +7,17 @@
         timeout = 4;
         efi.canTouchEfiVariables = true;
         systemd-boot.enable = true;
+        systemd-boot.configurationLimit = 10;  # Optional: limit number of generations
       };
-      fileSystems =
-        config.storage.redundancy.range
-        |> map (i: {
-          "/boot${i}" = {
-            device = "/dev/disk/by-partlabel/boot${i}";
-            fsType = "vfat";
-            options = [
-              "fmask=0022"
-              "dmask=0022"
-            ];
-          };
-        })
-        |> lib.mkMerge;
+      
+      # Use a simple single boot partition config instead of redundancy
+      fileSystems."/boot" = {
+        device = "/dev/disk/by-label/boot";  # Use filesystem label
+        fsType = "vfat";
+        options = [
+          "fmask=0022"
+          "dmask=0022"
+        ];
+      };
     };
 }
